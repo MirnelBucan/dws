@@ -189,7 +189,7 @@ input[name="search"] {
 .clanak {
     margin: 10px 25px;
     padding: 5px;
-    width: 60%;
+    width: 90%;
     display: inline-block;
     text-align: justify;
 
@@ -1095,7 +1095,6 @@ canvas {
     }
 }
 
-
-
-
-
+.grobnaMjestaKartice {
+    margin: 60px;
+}

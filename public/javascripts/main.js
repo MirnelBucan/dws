@@ -1,52 +1,92 @@
-$('.validate-form').on('submit', async function (e) {
-  let email = $('#email');
-  let password = $('#password');
-  console.log(email,password);
-  e.preventDefault();
-  if (validate(email) == false || validate(password) == false) {
-    alert('Invalid email or password');
-  }
-  $.ajax({
-    url: 'login',
-    method: 'post',
-    data: {
-      email: email.val(),
-      password: password.val()
-    },
-    success:function(res){
-      localStorage.setItem('token',res.token);
-      location.assign('home');
-    },
-    error:function(res, status, error){
-      if(status === 400){
-        alert();
-      }else{
-        alert('Unauthorized access!');
-      }
-      location.assign('index')
+$(document).ready(function(){
+  validatelogin();
+  validateRegister();
+});
+
+
+function validatelogin() {
+  $('.validate-form').on('submit', async function (e) {
+    let email = $('#email');
+    let password = $('#password');
+    console.log(email, password);
+    e.preventDefault();
+    if (validate(email) == false || validate(password) == false) {
+      alert('Invalid email or password');
     }
-  })
-});
+    $.ajax({
+      url: 'api/v1/login',
+      method: 'post',
+      data: {
+        email: email.val(),
+        password: password.val()
+      },
+      success: function (res) {
+        alert('Uspjesna prijava');
+        localStorage.setItem('token', res.token);
+        document.cookie = `Bearer=${res.token}`;
+        location.assign('home');
+      },
+      error: function (res, status, error) {
+        if (status === 400) {
+          alert();
+        } else {
+          alert('Unauthorized access!');
+        }
+        location.assign('/login')
+      }
+    });
+  });
+}
 
-$('.validate-form-reg').on('submit', async function (e) {
-  let email = $('#email');
-  let password = $('#password');
-  let passwordCheck = $('#passwordCheck');
-  e.preventDefault();
-  if (validate(email) == false) {
-    alert('Pogresan format emaila')
-  }
-  if (validate(password) == false) {
-    alert('Lozinka je prekratak');
-  }
-  if (validate(passwordCheck) == false) {
-    alert('Ponovljena lozinka je prekratka');
-  }
-  if (password.val() !== passwordCheck.val()) {
-    alert('Lozinke se ne poklapaju!');
-  }
-});
-
+function validateRegister() {
+  $('.validate-form-reg').on('submit', async function (e) {
+    let email = $('#email'),
+     password = $('#password'),
+     passwordCheck = $('#passwordCheck'),
+     firstName = $('#firstName'),
+     lastName = $('#lastName');
+    e.preventDefault();
+    if (validate(email) == false) {
+      alert('Pogresan format emaila')
+      return;
+    }
+    if (validate(password) == false) {
+      alert('Lozinka je prekratak');
+      return;
+    }
+    if (validate(passwordCheck) == false) {
+      alert('Ponovljena lozinka je prekratka');
+      return;
+    }
+    if (password.val() !== passwordCheck.val()) {
+      alert('Lozinke se ne poklapaju!');
+      return;
+    }
+    $.ajax({
+      url: 'api/v1/register',
+      method: 'post',
+      data: {
+        email: email.val(),
+        password: password.val(),
+        passwordCheck: passwordCheck.val(),
+        firstname: firstName.val(),
+        lastname: lastName.val(),
+      },
+      success: function (res) {
+        alert('Uspjesno registrovni, nastavljamo na prijavu.');
+        location.assign('login');
+      },
+      error: function (res, status, error) {
+        if (status === 400) {
+          alert('Something wrong with provided info, please try again');
+        } else {
+          alert('Unauthorized access!');
+        }
+        location.assign('index');
+      }
+    })
+  });
+}
 function validate(input) {
   //provjerimo tip inputa ili po imenu
   if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {

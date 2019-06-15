@@ -7,6 +7,7 @@ const { sequelize } = require('./models');
 const helmet = require('helmet');
 const cors = require('cors');
 const compression = require('compression');
+const passport = require('passport');
 
 sequelize
   .authenticate()
@@ -18,10 +19,11 @@ sequelize
     process.exit(1);
   });
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const apisRouter = require('./routes/api');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.use(cors());
@@ -35,9 +37,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+require('./config/passport')(passport);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/v1', apisRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -16,8 +16,7 @@
 
 </head>
 
-<body">
-</div>
+<body onload="myFunction()">
 <div id="page">
     <canvas id="canvas"></canvas>
     <header class="header">
@@ -25,10 +24,10 @@
             <ul class="nav-meni-ul">
                 <li class="nav-li-logo"><a href="index" target="_blank" class="nav-logo-link"><img
                                 src="images/logodws.jpg" class="nav-logo"></a></li>
-                <li><a href="/home">Početna</a></li>
+                <li><a href="index">Početna</a></li>
                 <li><a href="onama">O nama</a></li>
                 <li><a href="/places">Grobna mjesta</a></li>
-                <li><a href="/ostalo">Ostale usluge</a></li>
+                <li><a href="ostale-usluge">Ostale usluge</a></li>
                 <li><a href="logout">Log out</a></li>
             </ul>
         </nav>
@@ -52,10 +51,10 @@
         <div class="nav">
             <div class="nav-wrapper">
                 <nav class="hamb-nav">
-                    <li><a href="/home">Početna</a></li>
+                    <li><a href="index">Početna</a></li>
                     <li><a href="onama">O nama</a></li>
                     <li><a href="/places">Grobna mjesta</a></li>
-                    <li><a href="/ostalo">Ostale usluge</a></li>
+                    <li><a href="ostale-usluge">Ostale usluge</a></li>
                     <li><a href="logout">Log out</a></li>
                 </nav>
             </div>
@@ -112,28 +111,27 @@
 
             </div>
         </header>
-        <section class="section">
-            <h1>Početna strana</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia dolor condimentum vehicula tincidunt.
-                Nulla vel sem sit amet velit tempus pretium eget et est. Sed maximus vestibulum vulputate. Praesent sed justo ac
-                dui ullamcorper volutpat. Fusce molestie elit eu convallis vulputate. Duis ac congue nunc, id consectetur urna.
-                Phasellus condimentum malesuada tortor eget ultricies. Donec sit amet nisi ut ante consequat semper sed id neque.
-                Donec ipsum felis, commodo ac diam id, aliquam tristique risus. Aenean in tellus sed dui tristique vestibulum. In
-                a maximus nunc. Nulla et dictum orci, vel fringilla tortor. Mauris a dictum velit, nec imperdiet ante.</p>
-            <p>Sed nulla tellus, ultrices non maximus sed, dapibus sit amet dolor. Nullam molestie nibh a varius dictum. Cras
-                sit amet quam euismod, vulputate sem at, sagittis tortor. Phasellus venenatis ac magna quis aliquam. Morbi auctor
-                lectus quis ligula vehicula accumsan. Nunc feugiat neque a leo tristique, quis mollis eros consectetur. Sed semper
-                justo quis felis volutpat venenatis. Aenean in rhoncus leo, eu tempor nunc. Donec cursus orci at tortor lacinia,
-                eget tempor nulla convallis. Sed et fringilla risus, et imperdiet erat.</p>
-            <p>Vivamus quis ornare odio. Vestibulum et lacus vel massa porttitor mattis eget vel dui. Donec iaculis convallis
-                mollis. Etiam malesuada, eros vel congue posuere, velit urna feugiat felis, tempus sodales libero lorem
-                scelerisque nunc. Curabitur ac enim vel libero porttitor fringilla nec et ipsum. Nam eu augue a sapien porttitor
-                tempor vitae aliquet mauris. Curabitur semper, velit in dictum sodales, libero nisl aliquam odio, in elementum
-                nunc leo finibus lectus. Sed vel imperdiet magna, et pharetra mauris. Duis sed pharetra nibh. Phasellus arcu
-                ligula, gravida non rutrum ac, tincidunt sit amet dolor. Integer suscipit porta nibh, at scelerisque leo suscipit
-                eget. Morbi eros magna, ullamcorper in iaculis id, varius non diam. Orci varius natoque penatibus et magnis dis
-                parturient montes, nascetur ridiculus mus. Sed eu vestibulum nisi, at auctor ante.</p>
-        </section>
+        <h1 style="text-align: center; margin: 60px;">Lista slobodnih mjesta</h1>
+			<div style="margin: 50px;">
+				<div class="card text-center grobnaMjestaKartice">
+					<div class="card-body">
+						<h5 class="card-title">Groblje 1</h5>
+						<p class="card-text">Muslimani: 150</p>
+					</div>
+				</div>
+				<div class="card text-center grobnaMjestaKartice">
+					<div class="card-body">
+						<h5 class="card-title">Groblje 2</h5>
+						<p class="card-text">Muslimani: 150</p>
+					</div>
+				</div>
+				<div class="card text-center grobnaMjestaKartice">
+					<div class="card-body">
+						<h5 class="card-title">Groblje 3</h5>
+						<p class="card-text">Muslimani: 150</p>
+					</div>
+				</div>
+			</div>
 
 </div>
 </main>
