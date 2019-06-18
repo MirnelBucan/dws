@@ -22,14 +22,17 @@
     <canvas id="canvas"></canvas>
     <header class="header">
         <nav class="navigacijski-meni" id="screen1">
-            <ul class="nav-meni-ul">
-                <li class="nav-li-logo"><a href="index" target="_blank" class="nav-logo-link"><img
+            <ul class="nav-meni-ul row">
+                <li class="nav-li-logo"><a href="/" target="_blank" class="nav-logo-link"><img
                                 src="images/logodws.jpg" class="nav-logo"></a></li>
                 <li><a href="/home">Početna</a></li>
-                <li><a href="onama">O nama</a></li>
+                <li><a href="/onama">O nama</a></li>
                 <li><a href="/places">Grobna mjesta</a></li>
                 <li><a href="/ostalo">Ostale usluge</a></li>
-                <li><a href="logout">Log out</a></li>
+                <% if(user && user.role == 'administrator'){ %>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                <% }%>
+                <li><a href="/logout">Log out</a></li>
             </ul>
         </nav>
         <div class="login-search">

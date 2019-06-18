@@ -16,5 +16,11 @@ module.exports = {
   },
   places: (req, res, next) => {
     res.render('grobnaMjesta');
+  },
+  home: (req, res, next) => {
+    res.render('home',{user: req.user});
+  },
+  unauthorized: (req, res, next) => {
+    res.render('err');
   }
 };

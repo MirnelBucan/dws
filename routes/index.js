@@ -14,11 +14,16 @@ router.route('/register')
 router.route('/login')
   .get(IndexController.login);
 
+router.route('/err')
+  .get(IndexController.unauthorized);
+
 router.route('/ostalo').get(IndexController.ostalo);
+
 router.route('/places').get(IndexController.places);
-router.route('/home').get((req, res, next) => {
-    res.render('home');
-});
+
+router.route('/home').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),
+  IndexController.home);
+
 router.route('/groblje/:id').get((req, res, next) => {
     res.render('groblje');
 });

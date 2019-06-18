@@ -1,4 +1,4 @@
-const { Users} = require('../models');
+const { Users } = require('../models');
 const { sanitizeUser, password } = require('../utils');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -31,4 +31,29 @@ module.exports = {
     // res.cookie('Bearer',token,{httpOnly:true,expires:expires}).json({ succes: true});
     res.status(200).json({token, succes: true});
   },
+  logout: (req, res, next) => {
+    if(req.headers.cookie['Bearer'])
+      res.clearCookie('Bearer');
+    res.redirect('/users/login');
+  },
+  authorizeAdmin: (req, res, next) => {
+    if(req.user && req.user.role !== 'administrator'){ console.log('here'); res.redirect('/err'); }
+    else next();
+  },
+  deluser: async (req, res, next) => {
+    let success ='';
+    console.log(req.params);
+    try {
+      success =  await Users.destroy({where: { id: req.params.id } });
+
+      if(success)
+        res.status(200).json({msg: 'Success'});
+      else
+        res.status(400).json({msg: 'Failed'});
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({msg: 'Failed'});
+    }
+  },
+
 };

@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const compression = require('compression');
 const passport = require('passport');
+const UserServices = require('./services/UserServices');
 
 sequelize
   .authenticate()
@@ -22,6 +23,7 @@ sequelize
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apisRouter = require('./routes/api');
+const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
 
@@ -38,9 +40,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 require('./config/passport')(passport);
+app.use(passport.initialize());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/dashboard',passport.authenticate('jwt', { session:false }),
+  UserServices.authorizeAdmin ,dashboardRouter);
 app.use('/api/v1', apisRouter);
 
 // catch 404 and forward to error handler

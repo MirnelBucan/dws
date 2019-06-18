@@ -33,7 +33,7 @@ module.exports = (passport) => {
       //we check for user by id from token
       let user = await Users.findByPk(payload.id);
       //if there is such user, callback user
-      if (user) done(null, user);
+      if (user) done(null, user.dataValues);
       //if there isn't such user, callback false
       else done(null, false);
     } catch (err) {
@@ -66,4 +66,5 @@ module.exports = (passport) => {
       return done(err, null);
     }
   }));
+
 };
