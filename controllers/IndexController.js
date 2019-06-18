@@ -22,5 +22,11 @@ module.exports = {
   },
   unauthorized: (req, res, next) => {
     res.render('err');
+  },
+  cemetary: (req, res, next) => {
+    res.render('groblje');
+  },
+  religion: (req, res, next) => {
+    res.render('vjera');
   }
 };

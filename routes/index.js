@@ -17,18 +17,14 @@ router.route('/login')
 router.route('/err')
   .get(IndexController.unauthorized);
 
-router.route('/ostalo').get(IndexController.ostalo);
+router.route('/ostalo').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),IndexController.ostalo);
 
-router.route('/places').get(IndexController.places);
+router.route('/places').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),IndexController.places);
 
 router.route('/home').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),
   IndexController.home);
 
-router.route('/groblje/:id').get((req, res, next) => {
-    res.render('groblje');
-});
-router.route('/vjera').get((req, res, next) => {
-    res.render('vjera');
-})
+router.route('/groblje/:id').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),IndexController.cemetary);
+router.route('/vjera').get(passport.authenticate('jwt',{session: false, failureRedirect: 'err'}),IndexController.religion);
 
 module.exports = router;

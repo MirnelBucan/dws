@@ -21,7 +21,6 @@ sequelize
   });
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const apisRouter = require('./routes/api');
 const dashboardRouter = require('./routes/dashboard');
 
@@ -43,7 +42,6 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/dashboard',passport.authenticate('jwt', { session:false }),
   UserServices.authorizeAdmin ,dashboardRouter);
 app.use('/api/v1', apisRouter);

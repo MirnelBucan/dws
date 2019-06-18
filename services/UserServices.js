@@ -32,9 +32,8 @@ module.exports = {
     res.status(200).json({token, succes: true});
   },
   logout: (req, res, next) => {
-    if(req.headers.cookie['Bearer'])
-      res.clearCookie('Bearer');
-    res.redirect('/users/login');
+    res.clearCookie('Bearer');
+    res.redirect('/login');
   },
   authorizeAdmin: (req, res, next) => {
     if(req.user && req.user.role !== 'administrator'){ console.log('here'); res.redirect('/err'); }
